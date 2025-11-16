@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using OrderApi.Application.Commands;
-using OrderApi.Application.Interfaces.Handlers;
+using OrderApi.Application.Interfaces;
 
 namespace OrderApi.WebApi.Controllers;
 

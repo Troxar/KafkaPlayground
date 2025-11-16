@@ -1,6 +1,6 @@
 using OrderApi.Application.Commands;
 
-namespace OrderApi.Application.Interfaces.Handlers;
+namespace OrderApi.Application.Interfaces;
 
 public interface ICreateOrderHandler
 {

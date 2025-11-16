@@ -1,5 +1,5 @@
 using OrderApi.Application.Handlers;
-using OrderApi.Application.Interfaces.Handlers;
+using OrderApi.Application.Interfaces;
 
 namespace OrderApi.WebApi.Extensions;
 

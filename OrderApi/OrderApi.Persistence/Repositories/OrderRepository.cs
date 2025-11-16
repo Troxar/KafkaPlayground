@@ -1,17 +1,25 @@
 using OrderApi.Application.Interfaces;
 using OrderApi.Domain.Entities;
+using OrderApi.Persistence.DbContext;
 
 namespace OrderApi.Persistence.Repositories;
 
 public class OrderRepository : IOrderRepository
 {
-    public Task AddAsync(Order order, CancellationToken ct)
+    private readonly OrderDbContext _dbContext;
+
+    public OrderRepository(OrderDbContext dbContext)
     {
-        return Task.CompletedTask;
+        _dbContext = dbContext;
     }
 
-    public Task SaveChangesAsync(CancellationToken ct)
+    public async Task AddAsync(Order order, CancellationToken ct)
     {
-        return Task.CompletedTask;
+        await _dbContext.Orders.AddAsync(order, ct);
+    }
+
+    public async Task SaveChangesAsync(CancellationToken ct)
+    {
+        await _dbContext.SaveChangesAsync(ct);
     }
 }

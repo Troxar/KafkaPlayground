@@ -1,3 +1,4 @@
+using OrderApi.Persistence.Extensions;
 using OrderApi.WebApi.Extensions;
 using Scalar.AspNetCore;
 
@@ -13,11 +14,13 @@ public class Startup
         services.AddOpenApi();
 
         services.RegisterServices();
+        services.AddPersistence();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
+        if (env.IsDevelopment())
+            app.UseDeveloperExceptionPage();
 
         app.UseHttpsRedirection();
         app.UseRouting();

@@ -13,6 +13,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\OrderApi.Application\OrderApi.Application.csproj" />
+      <ProjectReference Include="..\OrderApi.Persistence\OrderApi.Persistence.csproj" />
     </ItemGroup>
 
 </Project>

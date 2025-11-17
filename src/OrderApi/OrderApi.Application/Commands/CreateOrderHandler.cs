@@ -1,15 +1,11 @@
-#region
-
-using OrderApi.Application.Commands;
 using OrderApi.Application.Interfaces;
+using OrderApi.Application.Interfaces.Commands;
 using OrderApi.Domain.Entities;
 using OrderApi.Domain.ValueObjects;
 
-#endregion
+namespace OrderApi.Application.Commands;
 
-namespace OrderApi.Application.Handlers;
-
-public class CreateOrderHandler : ICreateOrderHandler
+public class CreateOrderHandler : ICommandHandler<CreateOrderCommand, Guid>
 {
     private readonly IOrderRepository _repository;
 
@@ -18,7 +14,7 @@ public class CreateOrderHandler : ICreateOrderHandler
         _repository = repository;
     }
 
-    public async Task<Guid> CreateOrderAsync(CreateOrderCommand command, CancellationToken ct)
+    public async Task<Guid> HandleAsync(CreateOrderCommand command, CancellationToken ct)
     {
         var items = command.Items.Select(x => new OrderItem(x.ProductId, x.Quantity, x.UnitPrice));
         var order = new Order(command.CustomerId, items);

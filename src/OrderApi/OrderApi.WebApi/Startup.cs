@@ -22,6 +22,8 @@ public class Startup
         if (env.IsDevelopment())
             app.UseDeveloperExceptionPage();
 
+        app.ApplyMigrations();
+
         app.UseHttpsRedirection();
         app.UseRouting();
         app.UseAuthorization();

@@ -1,3 +1,4 @@
+using OrderApi.Application.Events;
 using OrderApi.Application.Interfaces;
 using OrderApi.Application.Interfaces.Commands;
 using OrderApi.Domain.Entities;
@@ -8,10 +9,12 @@ namespace OrderApi.Application.Commands;
 public class CreateOrderHandler : ICommandHandler<CreateOrderCommand, Guid>
 {
     private readonly IOrderRepository _repository;
+    private readonly IEventPublisher _publisher;
 
-    public CreateOrderHandler(IOrderRepository repository)
+    public CreateOrderHandler(IOrderRepository repository, IEventPublisher publisher)
     {
         _repository = repository;
+        _publisher = publisher;
     }
 
     public async Task<Guid> HandleAsync(CreateOrderCommand command, CancellationToken ct)
@@ -21,6 +24,9 @@ public class CreateOrderHandler : ICommandHandler<CreateOrderCommand, Guid>
 
         await _repository.AddAsync(order, ct);
         await _repository.SaveChangesAsync(ct);
+
+        var @event = new OrderCreatedEvent(order.Id, order.TotalAmount);
+        await _publisher.PublishAsync(@event, ct);
 
         return order.Id;
     }

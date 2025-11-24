@@ -8,6 +8,7 @@ COPY ["src/OrderApi/OrderApi.WebApi/OrderApi.WebApi.csproj", "src/OrderApi/Order
 COPY ["src/OrderApi/OrderApi.Application/OrderApi.Application.csproj", "src/OrderApi/OrderApi.Application/"]
 COPY ["src/OrderApi/OrderApi.Domain/OrderApi.Domain.csproj", "src/OrderApi/OrderApi.Domain/"]
 COPY ["src/OrderApi/OrderApi.Persistence/OrderApi.Persistence.csproj", "src/OrderApi/OrderApi.Persistence/"]
+COPY ["src/OrderApi/OrderApi.Messaging/OrderApi.Messaging.csproj", "src/OrderApi/OrderApi.Messaging/"]
 
 RUN dotnet restore "src/OrderApi/OrderApi.WebApi/OrderApi.WebApi.csproj"
 
